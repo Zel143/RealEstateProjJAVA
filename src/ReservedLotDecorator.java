@@ -1,21 +1,16 @@
 public class ReservedLotDecorator extends LotDecorator {
-    
     public ReservedLotDecorator(LotComponent decoratedLot) {
         super(decoratedLot);
     }
-    
+
     @Override
     public String getDescription() {
-        // Only change if the lot is not already sold
-        if (decoratedLot.getDescription().contains("Status: SOLD")) {
-            return decoratedLot.getDescription();
-        }
-        return decoratedLot.getDescription().replace("Status: Available", "Status: Reserved");
+        return decoratedLot.getDescription().replace("Status: Available", "Status: RESERVED");
     }
-    
+
     @Override
     public double getPrice() {
-        // Price remains unchanged when reserved
-        return decoratedLot.getPrice();
+        // Add a 10% reservation fee to the price
+        return decoratedLot.getPrice() * 1.1;
     }
 }
